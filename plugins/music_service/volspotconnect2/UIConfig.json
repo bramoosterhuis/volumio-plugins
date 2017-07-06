@@ -84,7 +84,7 @@
                "element":"switch",
                "doc":"TRANSLATE.VOLSPOTCONNECT.PIPEDOC",
                "label":"TRANSLATE.VOLSPOTCONNECT.PIPE",
-               "value":true
+               "value":false
             },
             {
                "id":"mr_fifo",
@@ -92,10 +92,8 @@
                "element":"input",
                "doc":"TRANSLATE.VOLSPOTCONNECT.FIFODOC",
                "label":"TRANSLATE.VOLSPOTCONNECT.FIFO",
-               "value":"",
-               "options":[
-
-               ],
+               "value":"/tmp/spotififo",
+               "options":[],
                "visibleIf":{
                   "field":"mr_enable",
                   "value":true
