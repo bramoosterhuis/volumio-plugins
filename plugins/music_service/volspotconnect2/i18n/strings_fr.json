@@ -2,12 +2,17 @@
  "VOLSPOTCONNECT":{
  "VOLSPOTCONNECTCONF":"Configuration Volumio Spotify connect",
  "VOLSPOTCONNECTACCOUNT":"Compte Spotify",
+ "VOLSPOTCONNECTMULTIROOM":"Mulit-room config",
  "USERNAME":"Nom utilisateur",
  "PASSWORD":"Mot de passe",
  "HIGHBITRATE":"Haute qualité",
  "DEVICENAME":"Nom du périphérique",
  "OUTPUT_DEVICE":"Output device",
  "SHAREDDEVICE":"Périphérique partagé entre plusieurs utilisateur",
- "SAVE":"Sauver"
+ "SAVE":"Sauver",
+ "PIPE":"Multi-room",
+ "FIFO":"FiFo buffer",
+ "PIPEDOC":"Enable Multi-room capabiliy using snapcast or similair service.",
+ "FIFODOC":"This should set to the pipe or fifo were a cast server is listening to."
 }
 }
