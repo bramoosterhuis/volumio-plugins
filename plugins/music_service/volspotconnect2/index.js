@@ -10,9 +10,6 @@ var exec = require('child_process').exec;
 module.exports = ControllerVolspotconnect;
 
 function ControllerVolspotconnect(context) {
-
-	var self = this;
-
 	var self = this;
 	// Save a reference to the parent commandRouter
 	self.context = context;
@@ -173,7 +170,7 @@ ControllerVolspotconnect.prototype.createVOLSPOTCONNECTFile = function () {
     var self = this;
 
     var defer=libQ.defer();
-	
+
     try {
 
         fs.readFile(__dirname + "/volspotconnect2.tmpl", 'utf8', function (err, data) {
@@ -188,8 +185,8 @@ ControllerVolspotconnect.prototype.createVOLSPOTCONNECTFile = function () {
 		    shared = " --disable-discovery " + "-u " + username + " -p " + password;
 console.log(shared)
 	} else shared="";
-             
-					
+
+
 		var outdev = self.commandRouter.sharedVars.get('alsa.outputdevice');
 		var devicename = self.commandRouter.sharedVars.get('system.name');
 		var hwdev ='plughw:' + outdev;
@@ -199,16 +196,16 @@ console.log(shared)
 		var conf1 = data.replace("${shared}", shared);
 		var conf2 = conf1.replace("${devicename}", devicename);
 		var conf3 = conf2.replace("${outdev}", hwdev);
-							
+
 	            fs.writeFile("/data/plugins/music_service/volspotconnect2/startconnect.sh", conf3, 'utf8', function (err) {
-                
+
                if (err)
                     defer.reject(new Error(err));
                 else defer.resolve();
             });
-            
+
         });
-    			
+
 
     }
     catch (err) {
@@ -225,7 +222,7 @@ ControllerVolspotconnect.prototype.saveVolspotconnectAccount = function (data) {
     var self = this;
 
     var defer = libQ.defer();
-    
+
    //	self.config.set('bitrate', data['bitrate']);
    	self.config.set('shareddevice', data['shareddevice']);
    	self.config.set('username', data['username']);
@@ -248,7 +245,7 @@ ControllerVolspotconnect.prototype.saveVolspotconnectAccount = function (data) {
 ControllerVolspotconnect.prototype.rebuildVOLSPOTCONNECTAndRestartDaemon = function () {
     var self=this;
     var defer=libQ.defer();
- 
+
     self.createVOLSPOTCONNECTFile()
         .then(function(e)
         {
