@@ -10,5 +10,13 @@
   "password": {
     "type": "string",
     "value": ""
+  },
+  "mr_enable":{
+     "type":"boolean",
+     "value":false
+  },
+  "mr_fifo":{
+     "type":"string",
+     "value":""
   }
 }
