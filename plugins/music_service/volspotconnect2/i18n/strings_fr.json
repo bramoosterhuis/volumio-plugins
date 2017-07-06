@@ -2,7 +2,7 @@
  "VOLSPOTCONNECT":{
  "VOLSPOTCONNECTCONF":"Configuration Volumio Spotify connect",
  "VOLSPOTCONNECTACCOUNT":"Compte Spotify",
- "VOLSPOTCONNECTMULTIROOM":"Mulit-room config",
+ "VOLSPOTCONNECTMULTIROOM":"Multi-room config",
  "USERNAME":"Nom utilisateur",
  "PASSWORD":"Mot de passe",
  "HIGHBITRATE":"Haute qualité",
