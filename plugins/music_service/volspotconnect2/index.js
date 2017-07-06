@@ -182,25 +182,37 @@ ControllerVolspotconnect.prototype.createVOLSPOTCONNECTFile = function () {
                 return console.log(err);
 		}
 	var shared;
+	var devicename = self.commandRouter.sharedVars.get('system.name');
+	var backend;
+	var hwdev;
 	var username = (self.config.get('username'));
 	var password = (self.config.get('password'));
+
 	if(self.config.get('shareddevice')===false) {
 		    shared = " --disable-discovery " + "-u " + username + " -p " + password;
 console.log(shared)
-	} else shared="";
+	} else {
+		shared="";
+	}
 
-
+  if(self.config.get('mr_enable') === true){
+		backend = "pipe"
+		hwdev = self.config.get('mr_fifo');
+	} else {
+		backend = "alsa"
 		var outdev = self.commandRouter.sharedVars.get('alsa.outputdevice');
-		var devicename = self.commandRouter.sharedVars.get('system.name');
-		var hwdev ='plughw:' + outdev;
+		hwdev ='plughw:' + outdev;
 				if (outdev == "softvolume") {
 					hwdev = "softvolume"
-					}
+				}
+   }
+
 		var conf1 = data.replace("${shared}", shared);
 		var conf2 = conf1.replace("${devicename}", devicename);
 		var conf3 = conf2.replace("${outdev}", hwdev);
+		var conf4 = conf3.replace("${backend}", backend);
 
-	            fs.writeFile("/data/plugins/music_service/volspotconnect2/startconnect.sh", conf3, 'utf8', function (err) {
+	            fs.writeFile("/data/plugins/music_service/volspotconnect2/startconnect.sh", conf4, 'utf8', function (err) {
 
                if (err)
                     defer.reject(new Error(err));
