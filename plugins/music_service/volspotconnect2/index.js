@@ -132,6 +132,9 @@ ControllerVolspotconnect.prototype.getUIConfig = function() {
  uiconf.sections[0].content[0].value = self.config.get('shareddevice');
  uiconf.sections[0].content[1].value = self.config.get('username');
  uiconf.sections[0].content[2].value = self.config.get('password');
+ // Multi-room
+ uiconf.sections[1].content[0].value = self.config.get('mr_enable');
+ uiconf.sections[1].content[1].value = self.config.get('mr_fifo');
 
             defer.resolve(uiconf);
             })
@@ -240,6 +243,26 @@ ControllerVolspotconnect.prototype.saveVolspotconnectAccount = function (data) {
 
     return defer.promise;
 
+};
+
+ControllerVolspotconnect.prototype.saveVolspotconnectMultiroom = function (data) {
+    var self = this;
+
+    var defer = libQ.defer();
+
+   	self.config.set('mr_enable', data['mr_enable']);
+   	self.config.set('mr_fifo', data['mr_fifo']);
+
+	self.rebuildVOLSPOTCONNECTAndRestartDaemon()
+        .then(function(e){
+            defer.resolve({});
+        })
+        .fail(function(e)
+        {
+            defer.reject(new Error());
+        })
+
+    return defer.promise;
 };
 
 ControllerVolspotconnect.prototype.rebuildVOLSPOTCONNECTAndRestartDaemon = function () {
